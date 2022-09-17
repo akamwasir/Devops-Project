@@ -1,0 +1,24 @@
+---
+- hosts: webservers
+  vars:
+  - warName: java-example.war
+  - warRemotePath: /opt/apache-tomcat-8.5.78/webapps/
+
+  tasks:
+  - name: Copy WAR to Remote server
+    copy: src=target/{{ warName }} dest={{ warRemotePath }}/{{ warName }} owner=tomcat group=tomcat
+   
+
+
+
+
+Create a file called deploy.yml and add the code below as a content
+
+sonar.projectKey=com.java:MavenBuild
+sonar.sources=src/main/java
+sonar.tests=src/test/java
+sonar.java.binaries=target/classes
+sonar.java.test.binaries=target/test-classes
+sonar.junit.reportPaths=target/surefire-reports
+sonar.jacoco.reportPaths=target/jacoco.exec
+
